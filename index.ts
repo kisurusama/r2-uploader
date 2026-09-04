@@ -54,15 +54,19 @@ const html = `<!doctype html>
   </body>
 </html>`;
 
-const sanitizeFileName = (name) =>
+const sanitizeFileName = (name: string): string =>
   name
     .replace(/^\.+/, '')
     .replace(/[^a-zA-Z0-9._-]/g, '-')
     .replace(/-+/g, '-')
     .slice(0, 200);
 
+interface Env {
+  R2_BUCKET: R2Bucket;
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
     if (request.method === 'GET' && url.pathname === '/') {

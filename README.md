@@ -1,29 +1,36 @@
 # r2-uploader
 
-A minimal Cloudflare Worker upload page for uploading files into Cloudflare R2.
+A Bun + TypeScript Cloudflare Worker upload page for uploading files into Cloudflare R2.
 
 ## Setup
 
-1. Install Wrangler:
+1. Install Bun: https://bun.sh/
+2. Install dependencies:
    ```bash
-   npm install -g wrangler
+   bun install
    ```
-2. Create an R2 bucket in Cloudflare.
-3. Update `wrangler.toml` with your real bucket name:
+3. Create an R2 bucket in Cloudflare.
+4. Update `wrangler.toml` with your real bucket name:
    ```toml
    [[r2_buckets]]
    binding = "R2_BUCKET"
    bucket_name = "your-r2-bucket-name"
    ```
-4. Authenticate and run locally:
+5. Authenticate and run locally:
    ```bash
-   wrangler login
-   wrangler dev
+   bunx wrangler login
+   bun run dev
    ```
-5. Open the Worker URL shown by Wrangler, choose a file, and upload.
+6. Open the Worker URL shown by Wrangler, choose a file, and upload.
+
+## Type check
+
+```bash
+bun run check
+```
 
 ## Deploy
 
 ```bash
-wrangler deploy
+bun run deploy
 ```
